@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "../style/Header.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-const Header = () => {
+function Header() {
+  const navigate = useNavigate();
+  const { isAuthenticated, signIn, signOut } = useAuth();
+
+  const handleSignIn = useCallback(() => {
+    navigate("/login");
+  }, [navigate]);
+
+  const handleSignOut = useCallback(() => {
+    signOut();
+    navigate("/");
+    console.log("Signed out successfully");
+  }, [signOut, navigate]);
+
   return (
     <nav className="navbar">
       <a className="navbar-brand" href="/">
         DentalHifi
       </a>
-
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-items">
           <li className="nav-item">
@@ -31,20 +45,28 @@ const Header = () => {
             </a>
           </li>
           <li className="nav-item">
-            <button type="button" className="btn btn-link nav-link">
-              <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/007/033/146/small/profile-icon-login-head-icon-vector.jpg"
-                alt="Sign In"
-                width="49"
-                height="51"
-              />
-              Sign In
-            </button>
+            {!isAuthenticated ? (
+              <button
+                type="button"
+                className="btn btn-link nav-link"
+                onClick={handleSignIn}
+              >
+                Sign In
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-link nav-link"
+                onClick={handleSignOut}
+              >
+                Log Out
+              </button>
+            )}
           </li>
         </ul>
       </div>
     </nav>
   );
-};
+}
 
 export default Header;

@@ -10,6 +10,7 @@ import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
 import { selectUsers, setUser } from "./store/usersSlice.js";
 import { useSelector, useDispatch } from "react-redux";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,21 +30,15 @@ function App() {
   }
 
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            user.currentUser ? <Navigate replace to="/home" /> : <Login />
-          }
-        />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/home"
-          element={user.currentUser ? <Home /> : <Navigate replace to="/" />}
-        />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

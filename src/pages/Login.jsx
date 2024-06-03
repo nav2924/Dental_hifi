@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/LoginPage.css";
 import { auth } from "../firebase/config.js";
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +11,23 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/usersSlice.js";
+import { useAuth } from "../context/AuthContext";
+
+export function useAuthStateObserver(auth, dispatch, setUser) {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(setUser({ id: user.uid, email: user.email }));
+      } else {
+        dispatch(setUser(null));
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup subscription on component unmount
+  }, [auth, dispatch, setUser]);
+
+  return null; // This hook does not return anything
+}
 
 function Login() {
   const dispatch = useDispatch();
@@ -18,21 +35,11 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
-
-  onAuthStateChanged(auth, (user) => {
-    console.log("Auth state changed, user:", user);
-    if (user) {
-      dispatch(setUser({ id: user.uid, email: user.email }));
-    } else {
-      dispatch(setUser(null));
-    }
-  });
+  const { signIn } = useAuth();
 
   function handleCredentials(e) {
     setError("");
     setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-
-    console.log(userCredentials);
   }
 
   const handleLogin = (e) => {
@@ -43,7 +50,8 @@ function Login() {
       userCredentials.password
     )
       .then(() => {
-        navigate("/home");
+        signIn(); // Update the global auth state
+        navigate("/"); // Navigate to the home page or dashboard
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -55,8 +63,9 @@ function Login() {
   function handleLoginGoogle() {
     signInWithPopup(auth, provider)
       .then((result) => {
+        signIn();
+        navigate("/");
         const user = result.user;
-        console.log("Google sign-in user:", user);
         dispatch(setUser({ id: user.uid, email: user.email }));
       })
       .catch((error) => {
@@ -126,5 +135,3 @@ function Login() {
 }
 
 export default Login;
-
-// https://dentalhifi-949ea.firebaseapp.com/__/auth/handler

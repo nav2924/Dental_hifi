@@ -6,7 +6,7 @@ import Filters from "../components/Filters";
 import SearchButton from "../components/SearchButton";
 import "../style/HomePage.css";
 import { Link } from "react-router-dom";
-
+import { AuthProvider } from "../context/AuthContext";
 const Home = () => {
   const slides = [
     {
@@ -34,6 +34,7 @@ const Home = () => {
       <header className="Home-header">
         <Header />
       </header>
+
       <main>
         <h1>Browse Events</h1>
         <SearchButton />
