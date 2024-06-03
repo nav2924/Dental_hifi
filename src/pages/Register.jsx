@@ -37,11 +37,7 @@ function Register() {
   return (
     <div className="register-container">
       <div className="logo-container">
-        <img
-          className="dental-hifi-logo"
-          src="Dental-Hifi.jpg"
-          alt="Dental Hi-Fi"
-        />
+        <img className="dental-hifi-logo" src="photo.jpg" alt="Dental Hi-Fi" />
       </div>
       <div className="register-box">
         <h2>Register</h2>

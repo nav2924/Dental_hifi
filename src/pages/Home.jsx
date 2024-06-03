@@ -1,173 +1,69 @@
 import React from "react";
+import Header from "../components/Header";
+import Slider from "../components/Slider";
+import Footer from "../components/Footer";
+import Filters from "../components/Filters";
+import SearchButton from "../components/SearchButton";
 import "../style/HomePage.css";
-import { getAuth } from "firebase/auth";
+import { Link } from "react-router-dom";
 
-const HomePage = () => {
-  const handleLogout = async () => {
-    try {
-      // Get the Firebase authentication instance (assuming you've initialized it)
-      const auth = getAuth();
-
-      // Sign out the user
-      await auth.signOut();
-
-      console.log("Logged out successfully!");
-
-      // Optionally, redirect to a login page or clear any local storage data
-      window.location.href = "/"; // Redirect to login page
-      localStorage.removeItem("userAuthToken"); // Clear local storage token (if applicable)
-    } catch (error) {
-      console.error("Error logging out:", error);
-      // Handle errors appropriately, e.g., display an error message to the user
-    }
-  };
+const Home = () => {
+  const slides = [
+    {
+      url: "https://media.istockphoto.com/id/1253875335/photo/connaught-place-with-national-flag.jpg?s=1024x1024&w=is&k=20&c=hhlMspWhlMWhPjfM__w0PJfBHF_9sBKByFjYc8wT2Nw=",
+      description: "Description of Event 1",
+      date: "Date: 2023-05-01",
+      rating: "4.5 (205)",
+    },
+    {
+      url: "https://media.istockphoto.com/id/1027005714/photo/marine-drive-mumbai.jpg?s=1024x1024&w=is&k=20&c=_RZT1I6Horj8m_X0gTs2LqWyz2BsurqsJVYyV4OMoKY=",
+      description: "Description of Event 2",
+      date: "Date: 2023-06-15",
+      rating: "4.2 (150)",
+    },
+    {
+      url: "https://media.istockphoto.com/id/1206421561/photo/sunset-traffic-in-new-delhi-tuc-tuc-cars-on-the-road-to-the-presidential-residance.jpg?s=1024x1024&w=is&k=20&c=OgA5TTVvlMvoQYNR9kPvFGG7E81fTXoc6SatpiY0nuo=",
+      description: "Description of Event 3",
+      date: "Date: 2023-07-20",
+      rating: "4.1 (187)",
+    },
+  ];
 
   return (
-    <div className="homepage">
-      <header className="header">
-        <h1>GreenTech Innovations</h1>
-        <p>Innovating for a Greener Tomorrow</p>
+    <div className="Home">
+      <header className="Home-header">
+        <Header />
       </header>
+      <main>
+        <h1>Browse Events</h1>
+        <SearchButton />
 
-      <section className="welcome">
-        <h2>Welcome to GreenTech Innovations</h2>
-        <p>
-          At GreenTech Innovations, we are dedicated to creating sustainable and
-          eco-friendly technology solutions that help reduce the environmental
-          footprint and promote a healthier planet. Join us in our mission to
-          innovate for a greener tomorrow.
-        </p>
-      </section>
+        <section>
+          <h3>Delhi</h3>
+          <Slider slides={slides} />
+        </section>
+        <br />
 
-      <section className="solutions">
-        <h2>Our Solutions</h2>
-        <div className="solution">
-          <h3>Renewable Energy Systems</h3>
-          <p>
-            Harness the power of the sun and wind with our cutting-edge solar
-            panels and wind turbines. Our renewable energy solutions are
-            designed to provide efficient and reliable power for homes,
-            businesses, and communities.
-          </p>
-        </div>
-        <div className="solution">
-          <h3>Eco-Friendly Transportation</h3>
-          <p>
-            Discover our range of electric vehicles and public transportation
-            options. We are committed to reducing carbon emissions and providing
-            sustainable transportation solutions for a cleaner environment.
-          </p>
-        </div>
-        <div className="solution">
-          <h3>Smart Home Technology</h3>
-          <p>
-            Transform your home into an energy-efficient haven with our smart
-            home products. From intelligent thermostats to energy-saving
-            lighting systems, our technology helps you reduce energy consumption
-            and save on utility bills.
-          </p>
-        </div>
-      </section>
+        <section>
+          <h3>Mumbai</h3>
+          <Slider slides={slides} />
+        </section>
+        <br />
 
-      <section className="why-choose-us">
-        <h2>Why Choose Us?</h2>
-        <ul>
-          <li>
-            <strong>Innovation:</strong> We are at the forefront of sustainable
-            technology, constantly innovating to bring you the latest and most
-            effective solutions.
-          </li>
-          <li>
-            <strong>Sustainability:</strong> Our commitment to the environment
-            drives everything we do. We prioritize eco-friendly practices and
-            products in all aspects of our business.
-          </li>
-          <li>
-            <strong>Community:</strong> We believe in the power of community and
-            work closely with local organizations to promote sustainability and
-            environmental awareness.
-          </li>
-        </ul>
-      </section>
+        <section>
+          <h3>Pune</h3>
+          <Slider slides={slides} />
+        </section>
+        <br />
 
-      <section className="latest-news">
-        <h2>Latest News</h2>
-        <div className="news-item">
-          <h3>GreenTech Innovations Wins Sustainability Award</h3>
-          <p>
-            We are proud to announce that GreenTech Innovations has been
-            recognized for our contributions to sustainable technology with the
-            prestigious Green Planet Award.
-          </p>
-        </div>
-        <div className="news-item">
-          <h3>New Electric Vehicle Model Launched</h3>
-          <p>
-            Our latest electric vehicle model, the GT EcoDrive, offers superior
-            performance and an extended range, making it easier than ever to go
-            green on the road.
-          </p>
-        </div>
-      </section>
+        <p>
+          Click <Link to="/handson">here</Link> to go to the Handson page.
+        </p>
+      </main>
 
-      <section className="contact">
-        <h2>Contact Us</h2>
-        <p>
-          Have questions or want to learn more about our products and services?
-          Get in touch with us today!
-        </p>
-        <p>
-          <strong>Email:</strong> info@greentechinnovations.com
-        </p>
-        <p>
-          <strong>Phone:</strong> 1-800-555-1234
-        </p>
-        <p>
-          <strong>Address:</strong> 123 GreenTech Lane, Eco City, GA 30301
-        </p>
-      </section>
-
-      <footer className="footer">
-        <h2>Follow Us</h2>
-        <div className="social-media">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Facebook
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Twitter
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-        </div>
-        <button onClick={handleLogout}>Logout</button>
-        <p>
-          © 2024 GreenTech Innovations. All rights reserved. |{" "}
-          <a href="/privacy-policy">Privacy Policy</a> |{" "}
-          <a href="/terms-of-service">Terms of Service</a>
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 };
 
-export default HomePage;
+export default Home;

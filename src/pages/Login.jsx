@@ -73,11 +73,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="logo-container">
-        <img
-          className="dental-hifi-logo"
-          src="Dental-Hifi.jpg"
-          alt="Dental Hi-Fi"
-        />
+        <img className="dental-hifi-logo" src="photo.jpg" alt="Dental Hi-Fi" />
       </div>
       <div className="login-box">
         <h2>Log in</h2>
@@ -86,7 +82,6 @@ function Login() {
             <img className="google-logo" src="/google.jpg" alt="Google" />
             Log in with Google
           </button>
-          
         </div>
         <div className="or">or</div>
         <div className="input-container">

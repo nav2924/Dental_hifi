@@ -1,0 +1,66 @@
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 16px;
+  }
+  
+  .inputContainer {
+    display: flex;
+    align-items: center; /* Center items vertically */
+  }
+  
+  .inputField {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: black;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .selectField {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: black;
+    margin-right: 10px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .dateTimeField {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: black;
+    margin-right: 10px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .clearButton {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
