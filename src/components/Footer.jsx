@@ -58,13 +58,13 @@ function Footer() {
 
         <div className="medias">
           <a href="#" id="icon-1">
-            <i class="fab fa-linkedin"></i>
+            <i className="fab fa-linkedin"></i>
           </a>
           <a href="#" id="icon-2">
-            <i class="fab fa-twitter"></i>
+            <i className="fab fa-twitter"></i>
           </a>
           <a href="#" id="icon-3">
-            <i class="fab fa-instagram"></i>
+            <i className="fab fa-instagram"></i>
           </a>
         </div>
       </div>

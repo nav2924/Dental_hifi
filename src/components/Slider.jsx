@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../style/Slider.css";
+import { Link } from "react-router-dom";
 
 const Slider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +33,10 @@ const Slider = ({ slides }) => {
               </div>
             </div>
             <div className="button-container">
-              <button onClick={prevSlide}>Book Ticket</button>
+              <Link to={`${slide.navigate}`}>
+                <button>Book Ticket</button>
+              </Link>
+
               <button onClick={nextSlide}>Add to bucket</button>
             </div>
           </div>
