@@ -16,3 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+
+
+// rzp_test_tQpf00q1oBMzXi  - id
+// NvJxlQLPwVAJp8hsJnYK0qTX - secret
